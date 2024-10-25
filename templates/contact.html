@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     <title>ArtSpire</title>
     <style>
+        
         .contact {
             margin-top: 80px;
         }
@@ -15,17 +16,18 @@
 
 <body>
     <header>
-        <a href="#" class="logo"><img src="images/palette.png" alt="Logo" style="width: 40px;">Art<span>Spire</span></a>
+        <a href="#" class="logo"><img src="{{ url_for('static', filename='images/palette.png') }}" alt="Logo" style="width: 40px;">Art<span>Spire</span></a>
         <nav class="navbar">
-            <a href="home.html">home</a>
-            <a href="cart.html">arts</a>
-            <a href="contact.html">contact</a>
+            <a href="{{ url_for('home') }}">home</a>
+            
+            <a href="{{ url_for('contact') }}">contact</a>
         </nav>
     </header>
     <section id="contact">
         <hr>
         <div class="contact container">
             <h1>Contact Us</h1>
+            
             <form id="myForm" method="post">
                 <label for="fname">First Name<span> *</span></label><br>
                 <input type="text" id="fname" name="fname" placeholder="e.g., John" size="30px"><br><br>
@@ -39,7 +41,9 @@
                 <label for="msg">Message<span> *</span></label><br>
                 <textarea id="msg" name="msg" rows="5" cols="29" placeholder="Enter Your Query..."></textarea><br><br>
             </form>
+
             <button type="submit" id="btn" onclick="valid()">SEND MESSAGE</button>
+        
         </div>
     </section>
     <section id="footer">
@@ -69,7 +73,7 @@
             <p>© Copyright 2023 by Prerna Ranjan || All rights reserved</p>
         </div>
     </section>
-    <script src="JavaScript/contact.js"></script>
+    <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
 </body>
 
 </html>

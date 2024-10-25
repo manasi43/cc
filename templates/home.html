@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     <title>ArtSpire</title>
 </head>
 
 <body>
     <header>
-        <a href="#" class="logo"><img src="images/palette.png" alt="Logo" style="width: 40px;">Art<span>Spire</span></a>
+        <a href="#" class="logo"><img src="{{ url_for('static', filename='images/palette.png') }}" alt="Logo" style="width: 40px;">Art<span>Spire</span></a>
         <nav class="navbar">
-            <a href="home.html">home</a>
+            <a href="{{ url_for('home') }}">home</a>
             <a href="#artist">artists</a>
-            <a href="cart.html">arts</a>
-            <a href="contact.html">contact</a>
+            
+            <a href="{{ url_for('contact') }}">contact</a>
         </nav>
     </header>
     <section id="main">
@@ -28,9 +28,9 @@
     <section id="artist">
         <div class="artist">
             <div class="artist-headers">
-                <div class="art-border1"><img src="images/floral-design-with-curled-edges.png" alt=""></div>
+                <div class="art-border1"><img src="{{ url_for('static', filename='images/floral-design-with-curled-edges.png') }}" alt=""></div>
                 <h1 id="arts">Artists</h1>
-                <div class="art-border2"><img src="images/floral-design-with-curled-edges.png" alt=""></div>
+                <div class="art-border2"><img src="{{ url_for('static', filename='images/floral-design-with-curled-edges.png') }}" alt=""></div>
             </div><br clear="all">
             <div class="all-artist">
                 <div class="artist-item">
@@ -49,7 +49,7 @@
                         </p>
                     </div>
                     <div class="artist-img">
-                        <img src="images/pablo.jpg" alt="img" style="width: 100%; height: 100%;">
+                        <img src="{{ url_for('static', filename='images/pablo.jpg') }}" alt="img" style="width: 100%; height: 100%;">
                     </div>
                 </div>
                 <div class="artist-item">
@@ -71,7 +71,7 @@
                         </p>
                     </div>
                     <div class="artist-img">
-                        <img src="images/monalisa_by_leonardo.jpg" alt="img" style="width: 100%; height: 100%;">
+                        <img src="{{ url_for('static', filename='images/monalisa_by_leonardo.jpg') }}" alt="img" style="width: 100%; height: 100%;">
                     </div>
                 </div>
                 <div class="artist-item">
@@ -84,7 +84,6 @@
                             They include landscapes, still lifes, portraits and self-portraits, and
                             are characterised by bold, symbolic colours, and dramatic, impulsive and highly
                             expressive brushwork that contributed to the foundations of modern art.
-
                         </p>
                         <p>
                             His paintings grew brighter and he turned his attention to the natural world,
@@ -92,7 +91,7 @@
                         </p>
                     </div>
                     <div class="artist-img">
-                        <img src="images/starry_night.jpg" alt="img" style="width: 100%; height: 100%;">
+                        <img src="{{ url_for('static', filename='images/starry_night.jpg') }}" alt="img" style="width: 100%; height: 100%;">
                     </div>
                 </div>
                 <div class="artist-item">
@@ -103,49 +102,4 @@
                             Michelangelo achieved fame early; two of his best-known works, the Pietà and David,
                             were sculpted before the age of thirty. Although he did not consider himself a painter,
                             Michelangelo created two of the most influential frescoes in the history of Western art:
-                            the scenes from Genesis on the ceiling of the Sistine Chapel in Rome, and The Last
-                            Judgment on its altar wall.
-                        </p>
-                        <P>
-                            His design of the Laurentian Library pioneered Mannerist
-                            architecture. At the age of 71, he succeeded Antonio da Sangallo the Younger as the
-                            architect of St. Peter's Basilica.
-                        </P>
-                    </div>
-                    <div class="artist-img">
-                        <img src="images/high_reniancess_michelangelo.jpg" alt="img" style="width: 100%; height: 100%;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="footer">
-        <div class="footer container">
-            <div class="brand">
-                <h1>Art<span>Spire</span></h1>
-            </div>
-            <h3>Thane - 401107, Maharashtra, India</h3>
-            <h3><span>+91 908 202 7740</span> - <a href="mailto:prernaranjan351@gmail.com">info@artspire.com</a></h3>
-            <div class="social-icon">
-                <div class="social-item">
-                    <a href="https://www.facebook.com/" target="_blank"><img
-                            src="images/5296499_fb_facebook_facebook logo_icon.png" width="40px" height="40px" /></a>
-                </div>
-                <div class="social-item">
-                    <a href="https://www.instagram.com/prerna_ranjan3/" target="_blank">
-                        <img src="images/3225191_app_instagram_logo_media_popular_icon.png" width="40px"
-                            height="40px" />
-                    </a>
-                </div>
-                <div class="social-item">
-                    <a href="https://www.linkedin.com/in/prerna-ranjan-03/" target="_blank">
-                        <img src="images/317750_linkedin_icon.png" width="40px" height="40px" />
-                    </a>
-                </div>
-            </div>
-            <p>© Copyright 2023 by Manasi Potdar || All rights reserved</p>
-        </div>
-    </section>
-</body>
-
-</html>
+                            the scenes from
