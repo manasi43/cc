@@ -1,32 +1,32 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+import mysql.connector
+from mysql.connector import Error
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key for session management
 
+# MySQL database connection details
+db_config = {
+    'host': 'database1.c7iegoogk12d.eu-north-1.rds.amazonaws.com',
+    'database': 'art',
+    'user': 'admin1',
+    'password': 'manasipotdar'
+}
+
+# Function to create a database connection
+def create_connection():
+    connection = None
+    try:
+        connection = mysql.connector.connect(**db_config)
+        if connection.is_connected():
+            print("Connected to MySQL database")
+    except Error as e:
+        print(f"The error '{e}' occurred")
+    return connection
+
 @app.route('/')
 def home():
     return render_template('home.html')
-
-# @app.route('/cart')
-# def cart():
-#     return render_template('cart.html')
-
-# @app.route('/checkout', methods=['GET', 'POST'])
-# def checkout():
-#     if request.method == 'POST':
-#         name = request.form['name']
-#         contact = request.form['contact']
-#         pincode = request.form['pincode']
-#         state = request.form['state']
-#         address = request.form['address']
-#         payment_method = request.form['payment']
-        
-#         # Here, you can handle the order logic (e.g., save to a database)
-#         # For now, we'll just flash a success message
-#         flash(f'Order placed successfully by {name}!', 'success')
-#         return redirect(url_for('checkout'))
-
-#     return render_template('checkout.html')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -37,9 +37,27 @@ def contact():
         email = request.form['email']
         msg = request.form['msg']
         
-        # Handle the contact form submission (e.g., send an email, save to a database)
-        # For now, we'll just flash a success message
-        flash(f'Message sent successfully by {fname}!', 'success')
+        # Create a connection to the database
+        connection = create_connection()
+        
+        if connection:
+            cursor = connection.cursor()
+            try:
+                # Insert the contact form data into the database
+                cursor.execute("""
+                    INSERT INTO contacts (first_name, last_name, phone_number, email, message) 
+                    VALUES (%s, %s, %s, %s, %s)
+                """, (fname, lname, phoneno, email, msg))
+                connection.commit()
+                
+                flash(f'Message sent successfully by {fname}!', 'success')
+            except Error as e:
+                print(f"The error '{e}' occurred")
+                flash('There was an error sending your message. Please try again.', 'error')
+            finally:
+                cursor.close()
+                connection.close()  # Close the database connection
+
         return redirect(url_for('contact'))
 
     return render_template('contact.html')
